@@ -1,0 +1,6 @@
+Config:
+    "menu" = "rofi"
+    "title" = "Applications"
+
+ItemsJSON:
+    applist()

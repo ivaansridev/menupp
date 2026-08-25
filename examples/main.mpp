@@ -1,0 +1,19 @@
+Config:
+    "menu" = "wofi"
+    "title" = "Menu"
+
+Items:
+    "Apps" = submenu("*applist")
+
+# Work in progress
+# No-result-found:
+#     "Search google for ${term}" = exec("./your-happy-script ${term}")
+
+*applist:
+
+    Config:
+        "menu" = "rofi"
+        "title" = "Launch"
+
+    ItemsJSON:
+        applist()
