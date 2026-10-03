@@ -1,7 +1,0 @@
-Config:
-    "menu" = "rofi"
-    "title" = "Main Menu"
-
-Items:
-    "Applications" = submenu("applications.mpp")
-    "About" = exec("echo menupp")

@@ -1,0 +1,11 @@
+Config:
+    "menu" = "rofi"
+    "title" = "Power"
+
+# opened from demo.mpp via submenu("power")
+Items:
+    "lock" = sh("loginctl lock-session ${XDG_SESSION_ID:-self}")
+    "log out" = sh("loginctl terminate-session ${XDG_SESSION_ID:-self}")
+    "suspend" = exec("systemctl suspend")
+    "reboot" = exec("systemctl reboot")
+    "power off" = exec("systemctl poweroff")

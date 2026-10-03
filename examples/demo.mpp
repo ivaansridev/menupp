@@ -1,0 +1,46 @@
+Config:
+    "menu" = "rofi"        # rofi | fuzzel | wofi
+    "title" = "menupp"
+    "backtext" = "Back"
+
+# $("cmd") runs in your shell and inlines the output, so these refresh each launch
+Items:
+    "uptime   $("uptime -p")" = ""
+    "kernel   $("uname -sr")" = ""
+    "cpus     $("nproc")" = ""
+    "root fs  $("df -h / | awk 'NR==2 {print $5}'")" = ""
+
+    # an empty value "" makes an entry display only
+
+    # exec() runs the program directly, no shell, no pipes
+    "file manager" = exec("nautilus")
+    "text editor" = exec("nvim")
+    "monitor" = exec("btop")
+
+    # sh() goes through $SHELL, so pipes, globs and && all work
+    "recent errors" = sh("journalctl -p err -n 20 --no-pager | tail -5")
+    "rebuild index" = sh("find ~/src -name '*.c' | wc -l")
+
+    # functions are templates, ${arg} fills in at the call site
+    "run in terminal" = terminal("htop")
+
+    # submenu to another file, the .mpp is optional
+    "power" = submenu("power")
+
+    # submenu to a *section further down this same file
+    "browsers" = submenu("*web")
+
+    # hidden, runs only when your typing matches nothing above
+    "no-result-found" = exec("xdg-open https://duckduckgo.com/?q=${term}")
+
+Functions:
+    terminal(cmd) = sh("x-terminal-emulator -e ${cmd}")
+
+*web:
+    Config:
+        "title" = "Browsers"
+
+    Items:
+        "firefox" = exec("firefox")
+        "chromium" = exec("chromium")
+        "netscape" = exec("netscape")
